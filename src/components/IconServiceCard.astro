@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  icon: 'record' | 'budget' | 'campaign' | 'contact' | 'phone' | 'document' | 'share' | 'attend' | 'volunteer';
+  heading: string;
+  description: string;
+  linkLabel: string;
+  linkHref: string;
+}
+
+const { icon, heading, description, linkLabel, linkHref } = Astro.props;
+---
+
+<div class="service-card">
+  <div class="service-card-icon">
+    <Icon name={icon} />
+  </div>
+  <h3>{heading}</h3>
+  <p>{description}</p>
+  <a href={linkHref}>{linkLabel}</a>
+</div>

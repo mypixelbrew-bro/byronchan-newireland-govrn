@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+
+const tiles: { icon: 'record' | 'budget' | 'campaign' | 'contact'; label: string; href: string }[] = [
+  { icon: 'record', label: 'The Record', href: '/budget/' },
+  { icon: 'budget', label: 'The Budget', href: '/budget/' },
+  { icon: 'campaign', label: 'Campaign', href: '/campaign/' },
+  { icon: 'contact', label: 'Contact', href: '/contact/' },
+];
+---
+
+<div class="quick-access">
+  <div class="wrap">
+    <div class="quick-access-list">
+      {tiles.map((tile) => (
+        <a href={tile.href} class="quick-access-item">
+          <Icon name={tile.icon} />
+          <span>{tile.label}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>

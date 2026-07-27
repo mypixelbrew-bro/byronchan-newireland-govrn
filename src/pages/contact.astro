@@ -1,0 +1,58 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+---
+
+<PageLayout
+  title="Contact — Hon. Byron Chan MP, Governor of New Ireland"
+  description="Contact the Governor's provincial office in Kavieng or the parliamentary office in Waigani. Media enquiries welcome."
+  path="/contact/"
+  breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
+>
+  <div class="wrap page-heading">
+    <h1>Contact the Governor's office</h1>
+    <p class="subtitle">The provincial office in Kavieng is open weekdays. The parliamentary office operates during sitting weeks.</p>
+  </div>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="two-col">
+        <ContactBlock
+          heading="Governor's Office — Kavieng"
+          fields={[
+            { label: 'Address', value: 'New Ireland Provincial Government Headquarters, Kavieng, New Ireland Province' },
+            { label: 'Phone', value: '+675 984 XXXX (placeholder)' },
+            { label: 'Hours', value: 'Monday to Friday, 8:00am – 4:00pm' },
+          ]}
+        />
+        <ContactBlock
+          heading="Parliament Office — Waigani"
+          fields={[
+            { label: 'Address', value: 'National Parliament, Parliament House, Waigani, NCD' },
+            { label: 'Hours', value: 'During sitting weeks only' },
+          ]}
+        />
+      </div>
+      <p class="muted mt-lg" style="font-size:13px; max-width:640px;">Walk-in enquiries welcome. For budget or project enquiries, contact the Provincial Administrator's office.</p>
+    </div>
+  </section>
+
+  <section class="section section--paper">
+    <div class="wrap contact-block">
+      <h2>Other channels</h2>
+      <dl>
+        <dt>Facebook</dt>
+        <dd><a href="https://facebook.com/byronchangovernor" target="_blank" rel="noopener noreferrer">facebook.com/byronchangovernor</a> (placeholder)</dd>
+        <dt>Email</dt>
+        <dd><a href="mailto:governor@newireland.gov.pg">governor@newireland.gov.pg</a> (placeholder)</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap prose">
+      <h2>Media enquiries</h2>
+      <p class="mt-md">For interview requests, approved photographs or press enquiries, email the Governor's office. Response time: within 48 hours.</p>
+    </div>
+  </section>
+</PageLayout>

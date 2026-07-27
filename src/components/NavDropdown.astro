@@ -1,0 +1,15 @@
+---
+import type { NavChild } from '../data/nav';
+
+interface Props {
+  children: NavChild[];
+}
+
+const { children } = Astro.props;
+---
+
+<div class="nav-dropdown" role="menu">
+  {children.map((child) => (
+    <a href={child.href} role="menuitem">{child.label}</a>
+  ))}
+</div>

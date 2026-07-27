@@ -1,0 +1,14 @@
+---
+interface Props {
+  quote: string;
+  name: string;
+  role: string;
+}
+
+const { quote, name, role } = Astro.props;
+---
+
+<div class="endorsement-card">
+  <p class="quote-text">"{quote}"</p>
+  <p class="attribution"><strong>{name}</strong>, {role}</p>
+</div>

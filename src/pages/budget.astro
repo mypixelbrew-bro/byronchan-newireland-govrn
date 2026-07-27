@@ -1,0 +1,86 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import SectionHead from '../components/SectionHead.astro';
+import RecordTable from '../components/RecordTable.astro';
+import type { RecordEntry } from '../components/RecordTable.astro';
+import BudgetCard from '../components/BudgetCard.astro';
+
+const entries: RecordEntry[] = [
+  { title: 'Revised 2026 provincial budget — K499.6 million', meta: 'Passed in NI Assembly, Jun 2026', status: 'Delivered' },
+  { title: 'New Ireland Development Corporation board appointed', meta: 'Sworn in Kavieng, May 2026', status: 'Delivered' },
+  { title: 'Lihir & Simberi royalty increase — 2% to 3%', meta: 'Negotiated with mining companies', status: 'Delivered' },
+  { title: 'MOA signed — fish cannery, Kavieng', meta: 'Private investor partnership', status: 'Delivered' },
+  { title: 'MOA signed — balsa processing factory, Namatanai', meta: 'Private investor partnership', status: 'Delivered' },
+  { title: 'K10 million — Kavieng Hospital facilities upgrade', meta: 'Allocated in revised budget', status: 'Underway' },
+  { title: 'K10 million — teacher and nursing college funding', meta: 'Allocated in revised budget', status: 'Underway' },
+  { title: 'K10 million — climate-resilient farming initiative', meta: 'MOA with Dept of Agriculture', status: 'Not started' },
+  { title: 'Technical committee — agriculture & fisheries', meta: 'Across all 10 LLGs', status: 'Underway' },
+  { title: 'Development Academy of the Philippines — staff training', meta: 'Delegation visit Jun 2026', status: 'Underway' },
+];
+---
+
+<PageLayout
+  title="The Record and the Budget — Hon. Byron Chan MP, Governor of New Ireland"
+  description="Every commitment since taking office, and the full K499.6 million 2026 New Ireland Destiny provincial budget, sector by sector."
+  path="/budget/"
+  breadcrumb={[{ label: 'Home', href: '/' }, { label: 'The Record & Budget' }]}
+>
+  <div class="wrap page-heading">
+    <h1>The Record and the Budget</h1>
+    <p class="subtitle">Everything funded, signed and delivered since taking office on 23 February 2026, alongside the K500 million budget that funds what comes next.</p>
+  </div>
+
+  <section class="section" id="mandate" style="padding-top:0;">
+    <div class="wrap prose">
+      <p>Byron Chan won the New Ireland provincial seat on 10 February 2026 with 21,481 votes, surpassing the absolute majority requirement of 18,601. The by-election was called after the passing of Grand Chief Sir Julius Chan on 30 January 2025. Governor Chan was formally recognised by the Minister for Provincial and Local Level Government Affairs on 23 February 2026 and sworn into the Provincial Assembly on 26 February 2026.</p>
+    </div>
+  </section>
+
+  <section class="section" id="record" style="padding-top:0;">
+    <div class="wrap">
+      <SectionHead title="The record" subtitle="Every commitment since taking office. Including the ones not yet started." metaLabel="10 entries" />
+      <RecordTable entries={entries} />
+      <p class="mt-md muted" style="font-size:13px;">This record will grow. Every future entry will carry documentation. When there are enough projects, a filterable ward-by-ward ledger will replace this table.</p>
+    </div>
+  </section>
+
+  <section class="section" id="budget">
+    <div class="wrap">
+      <SectionHead title="The budget — New Ireland Destiny" subtitle="A record K499.6 million revised provincial budget for 2026." />
+      <div class="prose">
+        <p>The revised 2026 budget represents a K113.5 million increase from the initial K386 million budget. The increase is driven by a K105 million surge in National Government development grants and rising internal revenue from gold mining royalties following the successful negotiation to increase the provincial royalty rate from 2 to 3 percent on the Lihir and Simberi mines.</p>
+      </div>
+
+      <div class="budget-grid mt-lg">
+        <BudgetCard
+          heading="Infrastructure"
+          body="The largest share of the budget. Priority projects: sealing and upgrading the West Coast Road (198km), upgrading Kavieng town roads (10km), Lihir ring road (27km), opening four economic corridor roads to Class 3 standard, and the New Hanover (Lavongai) Island ring road. Long-term planning for an upgraded international seaport and airport at Kavieng."
+        />
+        <BudgetCard
+          heading="Health & Social Services"
+          body="K10 million for Kavieng Hospital facilities. Free primary healthcare reinforced at aid posts across both districts. Subsidised education maintained. Increased funding for rural health worker housing and medical supply chains to the outer islands."
+        />
+        <BudgetCard
+          heading="Education"
+          body="K10 million for teacher and nursing college development. New Ireland has 366 elementary schools and 156 primary schools. Budget maintains subsidised education and increases school infrastructure funding for outer-island LLGs."
+        />
+        <BudgetCard
+          heading="Agriculture, Fisheries & Economic Development"
+          body="Agriculture and fisheries remain the backbone of the rural economy. MOAs signed for a fish cannery in Kavieng and a balsa processing factory in Namatanai. K10 million climate-resilient farming initiative agreed with the Department of Agriculture and Livestock. The New Ireland Development Corporation board has been appointed to drive investment, with active projects including the proposed Malagan International Hotel, the Arrow Trading retail complex, and a joint-venture fishing project."
+          image="/images/img-ni-04.svg"
+          imageAlt="Fish market scene"
+          imageCaption="Fish market scene — placeholder image"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section--paper" id="revenue">
+    <div class="wrap section">
+      <div class="panel">
+        <h3>Where the money comes from</h3>
+        <p>A significant share of New Ireland's internal revenue comes from gold mining royalties. The provincial government successfully negotiated an increase from 2 to 3 percent on the Lihir and Simberi mines. Combined with rising global gold prices, this has substantially strengthened the province's fiscal position and reduced dependence on national government transfers.</p>
+      </div>
+    </div>
+  </section>
+</PageLayout>

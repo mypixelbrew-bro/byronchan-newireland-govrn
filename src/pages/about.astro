@@ -1,0 +1,67 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import FeatureSplit from '../components/FeatureSplit.astro';
+import QuoteBlock from '../components/QuoteBlock.astro';
+---
+
+<PageLayout
+  title="About the Governor — Hon. Byron Chan MP, New Ireland"
+  description="Byron Chan, Governor of New Ireland Province: parliamentary career, family legacy, and the People's Progress Party."
+  path="/about/"
+  ogImage="/images/img-ni-03.svg"
+  breadcrumb={[{ label: 'Home', href: '/' }, { label: 'About' }]}
+>
+  <section class="section" id="biography" style="padding-top:32px;">
+    <div class="wrap">
+      <FeatureSplit
+        image="/images/img-ni-03.svg"
+        imageAlt="Portrait of Hon. Byron Chan MP"
+        heading="Hon. James Byron Chan, MP"
+        body={`Byron Chan is the Governor of New Ireland Province, elected in a by-election on 10 February 2026. He is the son of the late Grand Chief Sir Julius Chan, a two-time Prime Minister of Papua New Guinea, one of the nation's founding fathers, and Governor of New Ireland from 2007 until his passing in January 2025. Byron carries chiefly status from his mother's clan, connecting him to New Ireland's traditional leadership alongside his political role.`}
+      />
+      <p class="muted mt-md" style="font-size:13px;">Governor of New Ireland Province · People's Progress Party · Born 13 June 1969 (age 57)</p>
+    </div>
+  </section>
+
+  <section class="section section--paper">
+    <div class="wrap prose">
+      <h2>Parliamentary career</h2>
+      <div class="mt-md">
+        <p>He served as Member for Namatanai Open from 2002 to 2017 — three consecutive terms, representing the same seat his father held from 1968 to 1997. During that time he served as Minister for Mining in the government of Prime Minister Peter O'Neill, where he oversaw the regulatory framework for Papua New Guinea's mining sector and proposed reforms to the Mining Act to strengthen national control over resource extraction.</p>
+        <p>He was defeated at the 2017 election by Walter Schnaubelt. In the intervening years he served as a director of Ok Tedi Mining Limited before resigning in January 2022 to contest the general election. He did not win a seat in 2022 but remained active in People's Progress Party affairs.</p>
+        <p>His 2026 campaign for the provincial seat was endorsed by both PPP and Pangu Pati. It resonated with the issues Sir Julius championed — provincial autonomy, education and economic self-sufficiency.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="legacy">
+    <div class="wrap">
+      <FeatureSplit
+        reverse
+        image="/images/img-ni-01.svg"
+        imageAlt="Kavieng harbour, representing New Ireland Province"
+        heading="The legacy"
+        body={`Sir Julius Chan's face now appears on Papua New Guinea's K100 banknote — a recognition that Governor Chan acknowledged in his maiden parliamentary speech as an honour to the founding generation. The "New Ireland Destiny" theme of the 2026 budget directly extends the development vision Sir Julius pursued across nearly two decades as Governor.`}
+      />
+      <p class="mt-md" style="font-size:14.5px;">The continuity is deliberate. This website exists to show what that continuity produces — in specific projects, accountable figures, and a public budget — as the term progresses.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <QuoteBlock
+        quote="I officially thank Prime Minister James Marape for the foresight and vision by putting politics aside and putting the face of Grand Chief Sir Julius Chan on the K100 note."
+        attribution="Byron Chan, maiden speech in Parliament, 14 March 2026"
+      />
+    </div>
+  </section>
+
+  <section class="section section--paper" id="ppp">
+    <div class="wrap prose">
+      <h2>People's Progress Party</h2>
+      <div class="mt-md">
+        <p>Byron Chan is a member of the People's Progress Party (PPP), one of Papua New Guinea's oldest political parties. PPP was founded by Sir Julius Chan and has been a significant force in New Ireland politics since the pre-independence era. The party's platform centres on provincial autonomy, economic development, infrastructure investment and equitable resource-revenue distribution.</p>
+      </div>
+    </div>
+  </section>
+</PageLayout>

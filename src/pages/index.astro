@@ -1,0 +1,155 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import HeroCarousel from '../components/HeroCarousel.astro';
+import type { HeroSlide } from '../components/HeroCarousel.astro';
+import QuickAccess from '../components/QuickAccess.astro';
+import FeatureSplit from '../components/FeatureSplit.astro';
+import HorizontalScroll from '../components/HorizontalScroll.astro';
+import type { ScrollCard } from '../components/HorizontalScroll.astro';
+import SectionHead from '../components/SectionHead.astro';
+import QuoteBlock from '../components/QuoteBlock.astro';
+
+const slides: HeroSlide[] = [
+  {
+    image: '/images/img-ni-01.svg',
+    imageAlt: 'Aerial view of Kavieng harbour, New Ireland Province',
+    eyebrow: 'GOVERNOR OF NEW IRELAND PROVINCE',
+    headingPre: 'Continuing what was started.',
+    headingItalic: 'Building',
+    headingPost: 'what comes next.',
+    description: 'A K500 million budget. A plan for every district. An account of every kina.',
+    ctaLabel: 'See the budget breakdown →',
+    ctaHref: '/budget/',
+    ctaVariant: 'accent',
+    hasVideo: true,
+  },
+  {
+    image: '/images/img-ni-02.svg',
+    imageAlt: 'Coastal village in New Ireland Province with outrigger canoe',
+    eyebrow: 'THE RECORD — FIRST FIVE MONTHS',
+    headingPre: 'Ten agreements signed.',
+    headingItalic: 'Three',
+    headingPost: 'already delivering.',
+    description: 'Every commitment documented, including the ones still in progress.',
+    ctaLabel: 'View the record →',
+    ctaHref: '/budget/',
+    ctaVariant: 'primary',
+  },
+  {
+    image: '/images/img-ni-06.svg',
+    imageAlt: 'Boluminski Highway running through coastal terrain',
+    eyebrow: '2027 NATIONAL GENERAL ELECTION',
+    headingPre: 'New Ireland deserves a Governor who',
+    headingItalic: 'finishes',
+    headingPost: 'what he starts.',
+    description: 'Support Byron Chan for a full term.',
+    ctaLabel: 'Learn more →',
+    ctaHref: '/campaign/',
+    ctaVariant: 'accent',
+  },
+];
+
+const recordCards: ScrollCard[] = [
+  {
+    image: '/images/img-ni-04.svg',
+    imageAlt: 'Fish market scene',
+    title: 'Revised 2026 budget — K499.6 million',
+    date: 'Jun 2026',
+    status: 'Delivered',
+    href: '/budget/',
+  },
+  {
+    image: '/images/img-ni-04.svg',
+    imageAlt: 'Fish cannery wharf, Kavieng',
+    title: 'Fish cannery MOA — Kavieng',
+    date: 'May 2026',
+    status: 'Delivered',
+    href: '/budget/',
+  },
+  {
+    image: '/images/img-ni-06.svg',
+    imageAlt: 'Boluminski Highway near the Lihir and Simberi mining region',
+    title: 'Lihir & Simberi royalty increase',
+    date: 'Apr 2026',
+    status: 'Delivered',
+    href: '/budget/',
+  },
+  {
+    image: '/images/img-ni-05.svg',
+    imageAlt: 'School classroom representing hospital and health investment',
+    title: 'K10m Kavieng Hospital upgrade',
+    date: 'Jun 2026',
+    status: 'Underway',
+    href: '/budget/',
+  },
+  {
+    image: '/images/img-ni-05.svg',
+    imageAlt: 'School classroom, New Ireland Province',
+    title: 'K10m teacher & nursing colleges',
+    date: 'Jun 2026',
+    status: 'Underway',
+    href: '/budget/',
+  },
+];
+---
+
+<PageLayout
+  title="Hon. Byron Chan MP — Governor of New Ireland Province"
+  description="Official site of Hon. Byron Chan MP, Governor of New Ireland Province. A record K500 million budget, the full delivery record, and the plan for every district."
+  path="/"
+  ogImage="/images/img-ni-01.svg"
+>
+  <HeroCarousel slides={slides} />
+  <QuickAccess />
+
+  <section class="stats-strip">
+    <div class="wrap section">
+      <div class="stats-grid">
+        <div>
+          <p class="stat-figure">K500m</p>
+          <p class="stat-label">2026 revised budget</p>
+        </div>
+        <div>
+          <p class="stat-figure">21,481</p>
+          <p class="stat-label">Votes received</p>
+        </div>
+        <div>
+          <p class="stat-figure">9</p>
+          <p class="stat-label">LLGs served</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <FeatureSplit
+        image="/images/img-ni-04.svg"
+        imageAlt="Fish market and wharf scene, Kavieng"
+        heading="A record budget for a province ready to grow"
+        body={`Governor Chan's revised 2026 budget — themed "New Ireland Destiny" — is the largest in the province's history. K499.6 million allocated across infrastructure, health, education, agriculture and economic development. Funded by rising gold revenues and a hard-won royalty increase from 2 to 3 percent on the Lihir and Simberi mines.`}
+        links={[
+          { label: 'Full budget breakdown →', href: '/budget/' },
+          { label: 'Infrastructure priorities →', href: '/budget/' },
+          { label: 'Revenue and royalties →', href: '/budget/' },
+        ]}
+      />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <SectionHead title="The record so far" metaLabel="View all →" metaHref="/budget/" />
+      <HorizontalScroll cards={recordCards} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <QuoteBlock
+        quote="The Ombudsman and the Minister have given clear clarification — there is no more vacancy in the Office of the Governor. I have been duly elected and have fulfilled that vacancy."
+        attribution="Byron Chan, press conference, 25 February 2026"
+      />
+    </div>
+  </section>
+</PageLayout>

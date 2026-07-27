@@ -1,0 +1,48 @@
+---
+import { navItems } from '../data/nav';
+---
+
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-top">
+    <span class="nav-brand-name">Menu</span>
+    <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">✕</button>
+  </div>
+  <div class="mobile-menu-body">
+    {navItems.map((item) => (
+      <div class="mobile-menu-group">
+        <h4>{item.label}</h4>
+        <a href={item.href}>{item.label}</a>
+        {item.children?.map((child) => <a href={child.href}>{child.label}</a>)}
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const closeBtn = document.getElementById('mobile-menu-close');
+  const menu = document.getElementById('mobile-menu');
+
+  function openMenu() {
+    menu?.classList.add('is-open');
+    document.body.classList.add('menu-open');
+    hamburgerBtn?.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenu() {
+    menu?.classList.remove('is-open');
+    document.body.classList.remove('menu-open');
+    hamburgerBtn?.setAttribute('aria-expanded', 'false');
+  }
+
+  hamburgerBtn?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+</script>

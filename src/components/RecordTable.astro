@@ -1,0 +1,27 @@
+---
+import StatusDot from './StatusDot.astro';
+
+export interface RecordEntry {
+  title: string;
+  meta: string;
+  status: 'Delivered' | 'Underway' | 'Not started';
+}
+
+interface Props {
+  entries: RecordEntry[];
+}
+
+const { entries } = Astro.props;
+---
+
+<div class="record-table">
+  {entries.map((entry) => (
+    <div class="record-row">
+      <div>
+        <p class="record-row-main">{entry.title}</p>
+        <p class="record-row-meta">{entry.meta}</p>
+      </div>
+      <StatusDot status={entry.status} />
+    </div>
+  ))}
+</div>

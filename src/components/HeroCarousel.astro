@@ -1,0 +1,113 @@
+---
+import Button from './Button.astro';
+
+export interface HeroSlide {
+  image: string;
+  imageAlt: string;
+  eyebrow: string;
+  headingPre: string;
+  headingItalic: string;
+  headingPost: string;
+  description: string;
+  ctaLabel: string;
+  ctaHref: string;
+  ctaVariant: 'primary' | 'accent';
+  hasVideo?: boolean;
+}
+
+interface Props {
+  slides: HeroSlide[];
+}
+
+const { slides } = Astro.props;
+---
+
+<section class="hero-carousel" aria-roledescription="carousel" aria-label="Featured highlights">
+  <div class="hero-track" id="hero-track">
+    {slides.map((slide, i) => (
+      <div class="hero-slide" id={`hero-slide-${i}`} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${slides.length}`}>
+        <img
+          src={slide.image}
+          alt={slide.imageAlt}
+          loading={i === 0 ? 'eager' : 'lazy'}
+          fetchpriority={i === 0 ? 'high' : 'auto'}
+          width="1600"
+          height="1000"
+        />
+        <div class="hero-slide-content">
+          <p class="eyebrow">{slide.eyebrow}</p>
+          <h1>{slide.headingPre} <em class="italic-key">{slide.headingItalic}</em> {slide.headingPost}</h1>
+          <p>{slide.description}</p>
+          <Button href={slide.ctaHref} variant={slide.ctaVariant}>{slide.ctaLabel}</Button>
+        </div>
+        {slide.hasVideo && (
+          <button class="hero-play" id="hero-play-btn" aria-label="Play video: Kavieng harbour at dawn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0A2458" stroke-width="0" >
+              <path d="M9 6l10 6-10 6V6z" fill="#0A2458" />
+            </svg>
+          </button>
+        )}
+      </div>
+    ))}
+  </div>
+
+  <div class="hero-dots" role="tablist" aria-label="Slide selector">
+    {slides.map((_, i) => (
+      <button
+        class:list={['hero-dot', { 'is-active': i === 0 }]}
+        data-slide-index={i}
+        role="tab"
+        aria-label={`Go to slide ${i + 1}`}
+        aria-selected={i === 0 ? 'true' : 'false'}
+      ></button>
+    ))}
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById('hero-track');
+  const dots = Array.from(document.querySelectorAll<HTMLButtonElement>('.hero-dot'));
+  const slides = Array.from(document.querySelectorAll<HTMLElement>('.hero-slide'));
+
+  if (track && dots.length && slides.length) {
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const index = Number(dot.dataset.slideIndex);
+        slides[index]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      });
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = slides.indexOf(entry.target as HTMLElement);
+            dots.forEach((dot, i) => {
+              dot.classList.toggle('is-active', i === index);
+              dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+            });
+          }
+        });
+      },
+      { root: track, threshold: 0.6 }
+    );
+
+    slides.forEach((slide) => observer.observe(slide));
+  }
+
+  const playBtn = document.getElementById('hero-play-btn');
+  playBtn?.addEventListener('click', () => {
+    const slide = playBtn.closest('.hero-slide');
+    const img = slide?.querySelector('img');
+    if (!img) return;
+    const video = document.createElement('video');
+    video.src = '/video/vid-ni-01.mp4';
+    video.setAttribute('poster', img.getAttribute('src') ?? '');
+    video.controls = true;
+    video.autoplay = true;
+    video.muted = true;
+    video.playsInline = true;
+    img.replaceWith(video);
+    playBtn.remove();
+  });
+</script>

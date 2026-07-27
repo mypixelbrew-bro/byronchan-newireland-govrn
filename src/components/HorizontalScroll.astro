@@ -1,0 +1,37 @@
+---
+import StatusDot from './StatusDot.astro';
+
+export interface ScrollCard {
+  image: string;
+  imageAlt: string;
+  title: string;
+  date: string;
+  status: 'Delivered' | 'Underway' | 'Not started';
+  href?: string;
+}
+
+interface Props {
+  cards: ScrollCard[];
+}
+
+const { cards } = Astro.props;
+---
+
+<div class="hscroll">
+  {cards.map((card) => (
+    <article class="hscroll-card">
+      <img src={card.image} alt={card.imageAlt} loading="lazy" width="560" height="350" />
+      <div class="hscroll-card-body">
+        <div class="hscroll-card-status">
+          <StatusDot status={card.status} />
+        </div>
+        {card.href ? (
+          <a href={card.href} class="hscroll-card-title">{card.title}</a>
+        ) : (
+          <span class="hscroll-card-title">{card.title}</span>
+        )}
+        <span class="hscroll-card-date">{card.date}</span>
+      </div>
+    </article>
+  ))}
+</div>

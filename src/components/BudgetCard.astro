@@ -1,0 +1,22 @@
+---
+interface Props {
+  heading: string;
+  body: string;
+  image?: string;
+  imageAlt?: string;
+  imageCaption?: string;
+}
+
+const { heading, body, image, imageAlt, imageCaption } = Astro.props;
+---
+
+<div class="budget-card">
+  {image && (
+    <figure>
+      <img src={image} alt={imageAlt} loading="lazy" width="640" height="400" />
+      {imageCaption && <figcaption>{imageCaption}</figcaption>}
+    </figure>
+  )}
+  <h3>{heading}</h3>
+  <p>{body}</p>
+</div>

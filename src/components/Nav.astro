@@ -1,0 +1,48 @@
+---
+import { navItems } from '../data/nav';
+import NavDropdown from './NavDropdown.astro';
+---
+
+<nav class="nav" id="site-nav">
+  <div class="wrap">
+    <a href="/" class="nav-brand">
+      <span class="nav-mark" aria-hidden="true"></span>
+      <span class="nav-brand-text">
+        <span class="nav-brand-name">Byron Chan MP</span>
+        <span class="nav-brand-role">Governor, New Ireland</span>
+      </span>
+    </a>
+
+    <div class="nav-links">
+      {navItems.map((item) => (
+        <div class="nav-item">
+          <a href={item.href} class="nav-link">{item.label}</a>
+          {item.children && <NavDropdown children={item.children} />}
+        </div>
+      ))}
+    </div>
+
+    <button class="nav-hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<script>
+  const utilityBar = document.getElementById('utility-bar');
+  const nav = document.getElementById('site-nav');
+
+  if (utilityBar && nav) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        nav.classList.toggle('is-scrolled', !entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+    observer.observe(utilityBar);
+  }
+</script>

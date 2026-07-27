@@ -1,0 +1,107 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ProvinceFacts from '../components/ProvinceFacts.astro';
+import type { Fact } from '../components/ProvinceFacts.astro';
+
+const facts: Fact[] = [
+  { label: 'Provincial capital', value: 'Kavieng' },
+  { label: 'Districts', value: '2 (Kavieng, Namatanai)' },
+  { label: 'LLGs', value: '9' },
+  { label: 'Population', value: '~194,000' },
+  { label: 'Area', value: '~9,557 km²' },
+  { label: 'Industries', value: 'Gold mining (Lihir, Simberi), fisheries, copra, cocoa, balsa, tourism' },
+  { label: 'Access', value: 'Kavieng Airport, Kavieng harbour, Boluminski Highway' },
+  { label: 'Member for Kavieng Open', value: 'Hon. Ian Ling-Stuckey MP (Treasurer of PNG)' },
+  { label: 'Member for Namatanai Open', value: 'Hon. Walter Schnaubelt MP' },
+];
+
+interface LlgRow {
+  district?: string;
+  llg: string;
+  hq: string;
+  population: string;
+}
+
+const llgRows: LlgRow[] = [
+  { district: 'Kavieng', llg: 'Kavieng Urban', hq: 'Kavieng', population: '16,725' },
+  { llg: 'Tikana Rural', hq: 'Kono', population: '~18,000' },
+  { llg: 'Lavongai Rural', hq: 'Lavongai', population: '~22,000' },
+  { llg: 'Murat Rural', hq: 'Mussau', population: '~8,000' },
+  { district: 'Namatanai', llg: 'Sentral Niu Ailan Rural', hq: 'Konos', population: '29,932' },
+  { llg: 'Namatanai Rural', hq: 'Namatanai', population: '20,003' },
+  { llg: 'Matalai Rural', hq: 'Matalai', population: '12,393' },
+  { llg: 'Konoagil Rural', hq: 'Konoagil', population: '~12,000' },
+  { llg: 'Nimamar Rural (Lihir)', hq: 'Lihir', population: '~18,000' },
+];
+---
+
+<PageLayout
+  title="New Ireland Province — Hon. Byron Chan MP, Governor"
+  description="Two districts, nine local-level governments, approximately 194,000 people. An overview of New Ireland Province, Papua New Guinea."
+  path="/province/"
+  ogImage="/images/img-ni-02.svg"
+  breadcrumb={[{ label: 'Home', href: '/' }, { label: 'New Ireland Province' }]}
+>
+  <div class="wrap page-heading">
+    <h1>New Ireland Province</h1>
+    <p class="subtitle">Two districts, nine local-level governments, approximately 194,000 people.</p>
+  </div>
+
+  <figure>
+    <img class="hero-img-full" src="/images/img-ni-02.svg" alt="Coastal village, New Ireland Province" loading="eager" fetchpriority="high" width="1600" height="900" />
+    <figcaption class="wrap caption mt-sm" style="text-transform:none;">Coastal village, New Ireland Province — placeholder image</figcaption>
+  </figure>
+
+  <section class="section" style="padding-top:32px;">
+    <div class="wrap prose">
+      <p>New Ireland Province stretches approximately 350 kilometres from Kavieng in the north to beyond Namatanai in the south. The provincial capital is Kavieng. The province includes the main island and several outer island groups: the Tabar Group, the Lihir Group (home to one of the world's largest gold mines), the Tanga Islands, the Feni Islands, New Hanover (Lavongai), the Murat (St Matthias) Group, and Musau. Over 20 languages are spoken, with Tigak, Nalik and Patpatar among the most common. The Boluminski Highway runs 264 kilometres along the east coast from Kavieng to Namatanai.</p>
+    </div>
+  </section>
+
+  <section class="section section--paper">
+    <div class="wrap">
+      <h2>Districts and local-level governments</h2>
+      <div class="table-scroll mt-md">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">District</th>
+              <th scope="col">LLG</th>
+              <th scope="col">Headquarters</th>
+              <th scope="col">Population (2011)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {llgRows.map((row) => (
+              <tr>
+                <td>{row.district ? <strong>{row.district}</strong> : ''}</td>
+                <td>{row.llg}</td>
+                <td>{row.hq}</td>
+                <td>{row.population}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="muted mt-sm" style="font-size:12px;">Population figures from the 2011 National Census. Approximate figures marked ~.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="panel">
+        <h3>Key facts</h3>
+        <ProvinceFacts facts={facts} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper">
+    <div class="wrap prose">
+      <h2>Malagan</h2>
+      <div class="mt-md">
+        <p>New Ireland is the birthplace of Malagan culture, one of Papua New Guinea's most distinctive artistic and spiritual traditions. Malagan refers to an intricate system of carvings, masks and ceremonial rites used to honour the dead and preserve ancestral identity. These elaborate wooden carvings are created by skilled local artisans and displayed during funerary ceremonies that can take months or years to prepare.</p>
+      </div>
+    </div>
+  </section>
+</PageLayout>

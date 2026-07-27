@@ -1,0 +1,25 @@
+---
+export interface ContactField {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  heading: string;
+  fields: ContactField[];
+}
+
+const { heading, fields } = Astro.props;
+---
+
+<div class="contact-block">
+  <h2>{heading}</h2>
+  <dl>
+    {fields.map((field) => (
+      <>
+        <dt>{field.label}</dt>
+        <dd>{field.value}</dd>
+      </>
+    ))}
+  </dl>
+</div>

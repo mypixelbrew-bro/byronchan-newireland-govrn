@@ -1,0 +1,123 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import SectionHead from '../components/SectionHead.astro';
+import EndorsementCard from '../components/EndorsementCard.astro';
+import EventsTable from '../components/EventsTable.astro';
+import type { EventEntry } from '../components/EventsTable.astro';
+import IconServiceCard from '../components/IconServiceCard.astro';
+import Button from '../components/Button.astro';
+
+const endorsements = [
+  { name: '[Name placeholder]', role: 'LLG President, Kavieng', quote: "The Governor delivered the biggest budget in this province's history in his first five months." },
+  { name: '[Name placeholder]', role: 'Ward Councillor, Sentral Niu Ailan Rural LLG', quote: 'The fish cannery agreement means jobs for our young people.' },
+  { name: '[Name placeholder]', role: 'Community leader, Lihir', quote: 'The royalty increase from 2 to 3 percent was something we had been asking for.' },
+  { name: '[Name placeholder]', role: "Women's representative, Namatanai", quote: 'Free primary healthcare and subsidised education — these matter to families.' },
+];
+
+const events: EventEntry[] = [
+  { date: '9 Aug 2026', location: 'Kavieng Town', event: "Governor's community address" },
+  { date: '23 Aug 2026', location: 'Namatanai', event: 'District rally and budget briefing' },
+  { date: '7 Sep 2026', location: 'Lihir', event: 'Community consultation — mining royalties' },
+  { date: '20 Sep 2026', location: 'Lavongai (New Hanover)', event: 'Island development forum' },
+  { date: 'TBC Oct 2026', location: 'Kavieng', event: 'PPP New Ireland campaign launch' },
+];
+
+const shareUrl = 'https://byronchan.com.pg';
+---
+
+<PageLayout
+  title="Campaign — Support Byron Chan for New Ireland"
+  description="Support Hon. Byron Chan MP for New Ireland Province in the 2027 National General Election. Endorsements, events, and how to get involved."
+  path="/campaign/"
+  breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Campaign' }]}
+>
+  <div class="wrap page-heading">
+    <h1>Support Byron Chan for New Ireland</h1>
+    <p class="subtitle">2027 National General Election · People's Progress Party</p>
+  </div>
+
+  <section class="section" id="ask" style="padding-top:0;">
+    <div class="wrap">
+      <div class="the-ask">
+        <div class="the-ask-media">
+          <img src="/images/img-ni-03.svg" alt="Portrait of Hon. Byron Chan MP" loading="eager" width="600" height="800" />
+        </div>
+        <div class="the-ask-body">
+          <p>My father served this province for 18 years as Governor, and before that as its representative for nearly three decades. When he passed, the people of New Ireland elected me to continue that work. I did not take that trust lightly. In five months, we have delivered a record K500 million budget, secured a royalty increase from the Lihir and Simberi gold mines, signed agreements for a fish cannery and a balsa factory, and appointed a new Development Corporation board.</p>
+          <p>I am asking for your vote in 2027 to continue this work for a full term. The budget is passed. The agreements are signed. The projects are funded. What they need now is time, oversight and a Governor who will see them through. Every kina of the budget is on this website. Every project will be added as it progresses. I will be judged on what gets built, not on what gets promised.</p>
+          <p>If you believe that New Ireland's future should be built on what Sir Julius started — autonomy, education, economic self-sufficiency — I ask for your support.</p>
+          <p class="the-ask-signature">Hon. Byron Chan MP, Governor of New Ireland Province</p>
+          <Button href="/budget/" variant="accent">See the full record →</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="endorsements">
+    <div class="wrap">
+      <SectionHead title="Endorsements" />
+      <div class="endorsement-grid">
+        {endorsements.map((e) => (
+          <EndorsementCard quote={e.quote} name={e.name} role={e.role} />
+        ))}
+      </div>
+      <p class="endorsement-note">[PLACEHOLDER: Replace with real names and statements. Do not publish fabricated endorsements.]</p>
+    </div>
+  </section>
+
+  <section class="section section--paper" id="events">
+    <div class="wrap">
+      <SectionHead title="Campaign events" metaLabel="2026–2027" />
+      <EventsTable events={events} />
+      <p class="muted mt-sm" style="font-size:12px;">Dates subject to change. Check this page or Facebook for updates.</p>
+    </div>
+  </section>
+
+  <section class="section" id="involved">
+    <div class="wrap">
+      <SectionHead title="Get involved" />
+      <div class="service-cards">
+        <IconServiceCard
+          icon="attend"
+          heading="Attend an event"
+          description="Come to a rally or community meeting. All events are open to the public."
+          linkLabel="See upcoming events ↑"
+          linkHref="#events"
+        />
+        <IconServiceCard
+          icon="volunteer"
+          heading="Volunteer"
+          description="Ward-level campaign teams need help with coordination, transport and outreach."
+          linkLabel="Contact the office →"
+          linkHref="/contact/"
+        />
+        <IconServiceCard
+          icon="share"
+          heading="Share this site"
+          description="The budget and the record are all here. Share the link with your community."
+          linkLabel="byronchan.com.pg"
+          linkHref="/"
+        />
+      </div>
+      <div class="panel mt-md">
+        <p class="caption" style="text-transform:none;">Share this site</p>
+        <div class="mt-sm" style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn btn-primary" href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noopener noreferrer">Share on Facebook</a>
+          <a class="btn btn-outline" href={`https://wa.me/?text=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noopener noreferrer">Share on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper">
+    <div class="wrap">
+      <div class="panel">
+        <p>Download a printable QR code poster for display at ward offices, schools and community buildings. The QR code links to this website.</p>
+        <div class="mt-md">
+          <Button href="/downloads/byron-chan-qr-poster.pdf" variant="primary">Download poster (A3 PDF)</Button>
+        </div>
+        <p class="muted mt-sm" style="font-size:12px;">[PLACEHOLDER: Generate QR code pointing to byronchan.com.pg]</p>
+      </div>
+    </div>
+  </section>
+</PageLayout>

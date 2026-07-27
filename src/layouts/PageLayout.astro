@@ -1,0 +1,36 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import UtilityBar from '../components/UtilityBar.astro';
+import Nav from '../components/Nav.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import FooterPreStrip from '../components/FooterPreStrip.astro';
+import Footer from '../components/Footer.astro';
+
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  ogImage?: string;
+  breadcrumb?: Crumb[];
+}
+
+const { title, description, path, ogImage, breadcrumb } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} path={path} ogImage={ogImage}>
+  <UtilityBar />
+  <Nav />
+  <MobileMenu />
+  {breadcrumb && <Breadcrumb items={breadcrumb} />}
+  <main id="main">
+    <slot />
+  </main>
+  <FooterPreStrip />
+  <Footer />
+</BaseLayout>
