@@ -4,19 +4,14 @@ import SectionHead from '../components/SectionHead.astro';
 import RecordTable from '../components/RecordTable.astro';
 import type { RecordEntry } from '../components/RecordTable.astro';
 import BudgetCard from '../components/BudgetCard.astro';
+import { recordEntries } from '../data/record';
 
-const entries: RecordEntry[] = [
-  { title: 'Revised 2026 provincial budget — K499.6 million', meta: 'Passed in NI Assembly, Jun 2026', status: 'Delivered' },
-  { title: 'New Ireland Development Corporation board appointed', meta: 'Sworn in Kavieng, May 2026', status: 'Delivered' },
-  { title: 'Lihir & Simberi royalty increase — 2% to 3%', meta: 'Negotiated with mining companies', status: 'Delivered' },
-  { title: 'MOA signed — fish cannery, Kavieng', meta: 'Private investor partnership', status: 'Delivered' },
-  { title: 'MOA signed — balsa processing factory, Namatanai', meta: 'Private investor partnership', status: 'Delivered' },
-  { title: 'K10 million — Kavieng Hospital facilities upgrade', meta: 'Allocated in revised budget', status: 'Underway' },
-  { title: 'K10 million — teacher and nursing college funding', meta: 'Allocated in revised budget', status: 'Underway' },
-  { title: 'K10 million — climate-resilient farming initiative', meta: 'MOA with Dept of Agriculture', status: 'Not started' },
-  { title: 'Technical committee — agriculture & fisheries', meta: 'Across all 10 LLGs', status: 'Underway' },
-  { title: 'Development Academy of the Philippines — staff training', meta: 'Delegation visit Jun 2026', status: 'Underway' },
-];
+const entries: RecordEntry[] = recordEntries.map((entry) => ({
+  title: entry.title,
+  meta: entry.meta,
+  status: entry.status,
+  href: `/budget/${entry.slug}/`,
+}));
 ---
 
 <PageLayout

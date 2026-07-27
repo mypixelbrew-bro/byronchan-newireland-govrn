@@ -1,0 +1,72 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import StatusDot from '../../components/StatusDot.astro';
+import RecordDetailPanel from '../../components/RecordDetailPanel.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import HorizontalScroll from '../../components/HorizontalScroll.astro';
+import type { ScrollCard } from '../../components/HorizontalScroll.astro';
+import { recordEntries } from '../../data/record';
+
+export function getStaticPaths() {
+  return recordEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+
+const sectorSiblings = recordEntries.filter((e) => e.sector === entry.sector && e.slug !== entry.slug);
+const fallbackSiblings = recordEntries.filter((e) => e.slug !== entry.slug);
+const related = (sectorSiblings.length > 0 ? sectorSiblings : fallbackSiblings).slice(0, 3);
+const relatedHeading = sectorSiblings.length > 0 ? `Other ${entry.sector} projects` : 'More from the record';
+
+const relatedCards: ScrollCard[] = related.map((e) => ({
+  image: e.image,
+  imageAlt: e.imageAlt,
+  title: e.title,
+  date: e.lastUpdated,
+  status: e.status,
+  href: `/budget/${e.slug}/`,
+}));
+---
+
+<PageLayout
+  title={`${entry.title} — The Record — Hon. Byron Chan MP`}
+  description={entry.description[0].slice(0, 150)}
+  path={`/budget/${entry.slug}/`}
+  ogImage={entry.image}
+  breadcrumb={[
+    { label: 'Home', href: '/' },
+    { label: 'The Record', href: '/budget/#record' },
+    { label: entry.title },
+  ]}
+>
+  <div class="wrap page-heading">
+    <p class="caption">{entry.sector}</p>
+    <h1 class="mt-sm">{entry.title}</h1>
+    <div class="mt-sm">
+      <StatusDot status={entry.status} />
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap two-col">
+      <div>
+        <img src={entry.image} alt={entry.imageAlt} width="800" height="500" style="width:100%; aspect-ratio:16/10; object-fit:cover;" />
+        <p class="caption mt-sm" style="text-transform:none;">{entry.imageCaption}</p>
+        <div class="prose mt-lg">
+          {entry.description.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </div>
+      <RecordDetailPanel entry={entry} />
+    </div>
+  </section>
+
+  <section class="section section--paper">
+    <div class="wrap">
+      <SectionHead title={relatedHeading} metaLabel="View all projects →" metaHref="/budget/#record" />
+      <HorizontalScroll cards={relatedCards} />
+    </div>
+  </section>
+</PageLayout>

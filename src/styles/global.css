@@ -823,6 +823,20 @@ a.hscroll-card-title:hover { color: var(--navy); }
   gap: 16px;
   padding: 16px 0;
   border-bottom: 1px solid var(--rule);
+  color: inherit;
+}
+
+a.record-row {
+  transition: background-color 0.12s ease;
+}
+
+a.record-row:hover {
+  text-decoration: none;
+  background-color: var(--paper);
+}
+
+a.record-row:hover .record-row-main {
+  color: var(--navy);
 }
 
 .record-row-main {

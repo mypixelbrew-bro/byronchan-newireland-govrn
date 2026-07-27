@@ -1,0 +1,43 @@
+---
+import StatusDot from './StatusDot.astro';
+import type { RecordDetailEntry } from '../data/record';
+
+interface Props {
+  entry: RecordDetailEntry;
+}
+
+const { entry } = Astro.props;
+---
+
+<div class="panel record-detail-panel">
+  <h3>Record data</h3>
+  <dl class="contact-block">
+    <dt>Status</dt>
+    <dd><StatusDot status={entry.status} /></dd>
+
+    <dt>Last updated</dt>
+    <dd>{entry.lastUpdated}</dd>
+
+    {entry.cost && (
+      <>
+        <dt>Cost</dt>
+        <dd>{entry.cost}</dd>
+      </>
+    )}
+
+    <dt>Funding source</dt>
+    <dd>{entry.fundingSource}</dd>
+
+    <dt>Contractor</dt>
+    <dd>{entry.contractor}</dd>
+
+    <dt>Ward</dt>
+    <dd>{entry.ward}</dd>
+
+    <dt>LLG</dt>
+    <dd>{entry.llg}</dd>
+
+    <dt>Sector</dt>
+    <dd>{entry.sector}</dd>
+  </dl>
+</div>

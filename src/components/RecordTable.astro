@@ -5,6 +5,7 @@ export interface RecordEntry {
   title: string;
   meta: string;
   status: 'Delivered' | 'Underway' | 'Not started';
+  href?: string;
 }
 
 interface Props {
@@ -15,13 +16,16 @@ const { entries } = Astro.props;
 ---
 
 <div class="record-table">
-  {entries.map((entry) => (
-    <div class="record-row">
-      <div>
-        <p class="record-row-main">{entry.title}</p>
-        <p class="record-row-meta">{entry.meta}</p>
-      </div>
-      <StatusDot status={entry.status} />
-    </div>
-  ))}
+  {entries.map((entry) => {
+    const Tag = entry.href ? 'a' : 'div';
+    return (
+      <Tag class="record-row" href={entry.href}>
+        <div>
+          <p class="record-row-main">{entry.title}</p>
+          <p class="record-row-meta">{entry.meta}</p>
+        </div>
+        <StatusDot status={entry.status} />
+      </Tag>
+    );
+  })}
 </div>
